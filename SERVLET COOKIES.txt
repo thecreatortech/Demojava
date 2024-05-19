@@ -1,0 +1,77 @@
+HTML:
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="ISO-8859-1"> 
+<title>Insert title here</title> 
+</head> 
+<body> 
+<form action="http://localhost:8080/prgs/CreateCookies" method = "Get"> 
+First Name : <input type ="text" name="first_name"> 
+<br/> 
+LastName : <input type="text" name="last_name"/> 
+<input type="submit" value="submit"/> 
+</form> 
+</body> 
+</html>
+
+SERVER:
+
+import java.io.IOException; 
+import java.io.PrintWriter; 
+import javax.servlet.ServletException; 
+import javax.servlet.annotation.WebServlet; 
+import javax.servlet.http.Cookie; 
+import javax.servlet.http.HttpServlet; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+ 
+/** 
+* Servlet implementation class CreateCookies 
+*/ 
+@WebServlet("/CreateCookies") 
+public class abc extends HttpServlet { 
+private static final long serialVersionUID = 1L; 
+ 
+/** 
+* @see HttpServlet#HttpServlet() 
+*/ 
+ 
+
+ 
+public abc() { 
+super(); 
+// TODO Auto-generated constructor stub 
+} 
+ 
+/** 
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response) 
+*/ 
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws 
+ServletException, IOException { 
+// TODO Auto-generated method stub 
+//response.getWriter().append("Served at: ").append(request.getContextPath()); 
+Cookie fName = new Cookie("first_name",request.getParameter("first_name")); 
+Cookie lName = new Cookie("last_name",request.getParameter("last_name")); 
+fName.setMaxAge(60*60); 
+lName.setMaxAge(60*60); 
+response.addCookie(fName); 
+response.addCookie(lName); 
+response.setContentType("text/html"); 
+PrintWriter out = response.getWriter(); 
+String title = "Setting Cookies Example"; 
+out.println("<html>\n"+"<head><title>"+"Servlet Cookies"+"</title></head>\n"+"<body bgcolor=\"#f0f0f0\" >\n"+"<h1 align = \"center\">"+title+"</h1>\n"+"<il>\n"+"<li><b> first_name</b>:"+request.getParameter("first_name")+"\n"+"<li><b>Last Name</b>:"+request.getParameter("last_name")+"\n"+"</ul>\n"+"</body></html>"); 
+ 
+} 
+ 
+/** 
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response) 
+*/ 
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws 
+ServletException, IOException { 
+// TODO Auto-generated method stub 
+doGet(request, response); 
+} 
+ 
+}

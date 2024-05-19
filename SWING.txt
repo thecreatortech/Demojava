@@ -1,0 +1,108 @@
+Sevelet Code:
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+/**
+* Servlet implementation class prg5
+*/
+@WebServlet("/prg5")
+public class prg5 extends HttpServlet {
+private static final long serialVersionUID = 1L;
+ 
+ /**
+ * @see HttpServlet#HttpServlet()
+ */
+ public prg5() {
+ super();
+ // TODO Auto-generated constructor stub
+ }
+/**
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+throws ServletException, IOException {
+// TODO Auto-generated method stub
+// response.getWriter().append("Served at: ").append(request.getContextPath());
+try
+ {
+ System.out.println("SERVLET EXECUTED");
+ response.setContentType("application/octet-stream");
+ String param = request.getParameter("param1");
+ System.out.println(param);
+ }
+ catch(Exception ee)
+ {
+ ee.printStackTrace();
+ }
+}
+/**
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+throws ServletException, IOException {
+// TODO Auto-generated method stub
+doGet(request, response);
+}
+}
+
+
+Java code:
+
+package prg5;
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
+import java.net.*;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.PrintStream;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.net.URLConnection;
+public class prgg5 extends JFrame implements ActionListener {
+ private static final long serialVersionUID = 1L;
+ JTextField t1;
+ JButton b1;
+ public prgg5() {
+ Container c = getContentPane();
+ c.setLayout(new FlowLayout());
+ t1 = new JTextField(20);
+ b1 = new JButton("Click");
+ c.add(t1);
+ c.add(b1);
+ b1.addActionListener(this);
+ setSize(400, 400);
+ setVisible(true);
+ }
+ @Override
+ public void actionPerformed(ActionEvent e) {
+ try {
+ if (e.getSource() == b1) {
+ URL url = new URL("http://localhost:8282/23mcaa27/prg5");
+ String qrysend = URLEncoder.encode("param1", "UTF-8") + "=" + 
+URLEncoder.encode(t1.getText(), "UTF-8");
+ URLConnection uc = url.openConnection();
+ uc.setDoInput(true);
+ uc.setDoOutput(true);
+ uc.setUseCaches(false);
+try (PrintStream dos = new PrintStream(uc.getOutputStream())) {
+ dos.println(qrysend);
+ }
+ System.out.println("OK");
+ System.out.println(qrysend);
+ }
+ } catch (Exception ee) {
+ ee.printStackTrace();
+ }
+ }
+ public static void main(String args[]) {
+ new prgg5();
+ }
+}
+

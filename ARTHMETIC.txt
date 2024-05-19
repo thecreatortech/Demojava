@@ -1,0 +1,63 @@
+HTML:
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="ISO-8859-1"> 
+<title>Insert title Here</title> 
+</head> 
+<body> 
+<form method="GET" action="http://localhost:8080/prgs/prog6.jsp"> 
+Enter First Number:<input type="text" name="num1"> 
+<br> 
+Enter Second Number:<input type="text" name="num2"> 
+<br> 
+<input type="submit" value="Submit"/> 
+</form> 
+</body> 
+</html> 
+
+JSP CODE:
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+<title>Insert title here</title> 
+</head> 
+<body> 
+<body> 
+<%response.getWriter();%> 
+<%!int numb1, numb2, sum=0, sub=0, mul=0, div=0, mod=0; %> 
+<%numb1=Integer.parseInt(request.getParameter("num1"));%> 
+<%numb2=Integer.parseInt(request.getParameter("num2"));%> 
+<%sum=numb1+numb2; 
+sub=numb1-numb2; 
+mul=numb1*numb2; 
+div=numb1/numb2; 
+mod=numb1%numb2; 
+out.println("Sum is:"+sum); 
+out.println("<br> Difference is:"+sub); 
+out.println("<br> Product is:"+mul); 
+out.println("<br> Division is:"+div); 
+out.println("<br> Modulus is:"+mod); 
+ 
+
+ 
+for(int i=0;i<numb1;i++) 
+if(i%2==0) 
+{ 
+out.println("<br> Even number are:"+i); 
+out.println("<br>"); 
+} 
+for(int i=0;i<numb2;i++) 
+if(i%2==0) 
+{ 
+out.println("<br> Odd numbers are:"+i); 
+out.println("<br>"); 
+} 
+%> 
+</body> 
+</html> 
+</body> 
+</html> 
